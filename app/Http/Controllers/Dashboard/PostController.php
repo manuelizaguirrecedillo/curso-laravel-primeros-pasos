@@ -28,7 +28,8 @@ class PostController extends Controller
       //return redirect()->route("post.create");
      // return to_route("post.create");
       
-     dd(Category::find(1)->posts);
+     //consultar todos los posts de una categoria
+    // dd(Category::find(1)->posts);
 
        //traer la info  $posts =Post::get();
          $posts =Post::paginate(2);

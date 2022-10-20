@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
  });
 
  Route::resource('post', PostController::class);
+ Route::resource('category', CategoryController::class);
 
 // Route::get('post', [PostController::class,'index']);
 // Route::get('post/{post}', [PostController::class,'show']);
