@@ -55,7 +55,7 @@ class categoryController extends Controller
 
           //crear un modelo osea insertarlo con los datos validados
           Category::create($request->validated());
-          return to_route("category.index")->with('status','registro Creado');
+          return to_route("category")->with('status','registro Creado');
 
 
 
@@ -107,7 +107,7 @@ class categoryController extends Controller
        $category->update($request->validated());
 
      //  $request->session()->flash('status','Registro actualizado');
-       return to_route("dashnoard.category.index")->with('status','Registro actualizado');
+       return to_route("category.index")->with('status','Registro actualizado');
 
 
 
