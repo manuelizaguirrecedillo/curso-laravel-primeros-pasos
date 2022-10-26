@@ -1,7 +1,7 @@
 @extends('dashboard.layout')
 
 
-<section>
+@section('content')
     <h1>Crear postt</h1>  
 
   @include('dashboard.fragment.errors-form');
@@ -15,3 +15,5 @@
       @include('dashboard.post.form');
 </form>
 </section>
+
+@endsection

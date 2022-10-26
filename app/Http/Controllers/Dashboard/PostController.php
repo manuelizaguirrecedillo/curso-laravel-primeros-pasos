@@ -28,7 +28,7 @@ class PostController extends Controller
       //return redirect()->route("post.create");
      // return to_route("post.create");
       
-     dd(Category::find(1)->posts);
+     //dd(Category::find(1)->posts);
 
        //traer la info  $posts =Post::get();
          $posts =Post::paginate(2);
@@ -73,7 +73,7 @@ class PostController extends Controller
 
           //crear un modelo osea insertarlo con los datos validados
           Post::create($request->validated());
-          return to_route("post");
+          return to_route("post.index")->with('status','Registro creado');
 
 
 

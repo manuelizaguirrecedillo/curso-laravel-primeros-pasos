@@ -1,7 +1,9 @@
 @extends('dashboard.layout')
 
 
-<section>
+@section('content')
+    
+
     <h1>Actualizar postt  {{$post->title}}</h1>  
 
   @include('dashboard.fragment.errors-form')
@@ -19,4 +21,5 @@
 
 
 </form>
-</section>
+@endsection
+
