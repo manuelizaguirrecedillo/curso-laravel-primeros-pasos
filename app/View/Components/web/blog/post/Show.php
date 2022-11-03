@@ -24,9 +24,6 @@ class Show extends Component
         $this->post->title ="Nuevo Titulo desde el componente";
      }
      
-
-
-
     /**
      * Get the view / contents that represent the component.
      *
@@ -34,6 +31,7 @@ class Show extends Component
      */
     public function render()
     {
+    
         return view('components.web.blog.post.show');
     }
 }
