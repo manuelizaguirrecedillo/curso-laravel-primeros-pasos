@@ -20,6 +20,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/vue', function () {
+    return view('vue');
+});
+
+Route::get('/vue/{n1?}', function () {
+    return view('vue');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 });

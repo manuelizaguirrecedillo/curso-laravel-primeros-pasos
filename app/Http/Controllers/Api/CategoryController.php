@@ -62,11 +62,11 @@ class CategoryController extends Controller
     public function posts(Category $category)
     {
     //manera query builder
-    //    $posts = Post::join('categories', "categories.id","=","posts.category_id")
-    //    ->select("posts.*" , "categories.title as category")
-    //    ->where("categories.id",$category->id)
-    //    ->get();
-    //    ->toSql();
+       $posts = Post::join('categories', "categories.id","=","posts.category_id")
+       ->select("posts.*" , "categories.title as category")
+       ->where("categories.id",$category->id)
+       ->get();
+       //->toSql();
 
     //manera Elocuent
     $posts = Post::with("category")
