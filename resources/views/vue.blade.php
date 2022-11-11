@@ -10,7 +10,10 @@
 <body>
     
     @vite("resources/js/app.js")
-    <div id="app"></div>
+    <div class="container" class="bg-blue-500">
+        <div id="app" >
+            </div> 
+    </div>
 </body>
 </html>
 

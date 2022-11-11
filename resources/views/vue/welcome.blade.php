@@ -6,11 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
+    
 </head>
 <body>
     
     @vite("resources/js/app.js")
-    <div id="app"></div>
+
+    <div class="container">
+        <div id="app" class="bg-red-500">
+            </div> 
+    </div>
+    
+ 
 </body>
 </html>
 

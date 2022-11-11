@@ -1,9 +1,18 @@
 <template>
 <form @submit.prevent="submit" >
+    
+<div class="grid grid-cols-2 gap-3">
 
-    <o-field label="Titulo" :variant="errors.title ? 'danger' : 'primary'" :message="errors.title">
+<h1 v-if="post"   >Actualizar Post <span class="font-bold">{{post.title}}</span></h1>
+<h1 v-else >Crear Post <span class="font-bold"></span></h1>
+     
+    <div class="col-span-2">
+  <o-field label="Titulo" :variant="errors.title ? 'danger' : 'primary'" :message="errors.title">
         <o-input v-model="form.title"  value=""></o-input>
-    </o-field>
+    </o-field></div>
+
+  
+
     <o-field  label="Descripcion"  :variant="errors.descripcion ? 'danger' : 'primary'" :message="errors.descripcion">
         <o-input v-model="form.descripcion" type="textarea" value=""></o-input>
     </o-field>
@@ -24,7 +33,7 @@
             <option value="not">No</option>
         </o-select>   
     </o-field>
-
+</div>
     <o-button variant="primary" native-type="submit"> Enviar</o-button>
 </form>
    
@@ -80,13 +89,61 @@ methods:{
     submit(){
         //limpiar errores
         this.clearErrorsForm()
-        console.log(this.form)
-
+        if(this.post =="")
+           
         //enviar los datos
-        this.$axios.post("/api/post",
+       return   this.$axios.post("/api/post",
         this.form
         ).then(res =>{
-            console.log(res)
+            this.$oruga.notification.open({
+        message: 'Registro Creado!',
+        variant: 'success',
+        duration: 4000,
+        closable:true,
+        position: 'bottom-right'
+      });
+        }).catch(error =>{
+            //atrapar errores del formulario
+            console.log(error.response.data)
+
+            //esto se puede mandar a un metodo para hacerlo mas limpio se manda el error.response.data
+            if(error.response.data.title)
+            this.errors.title= error.response.data.title[0]
+
+            if(error.response.data.descripcion)
+            this.errors.descripcion= error.response.data.descripcion[0]
+
+            if(error.response.data.category_id)
+            this.errors.category_id= error.response.data.category_id[0]
+
+            if(error.response.data.posted)
+            this.errors.posted= error.response.data.posted[0]
+
+            if(error.response.data.content)
+            this.errors.content= error.response.data.content[0]
+
+           
+        })
+        //actualizar
+          this.$axios.patch("/api/post/"+this.post.id,
+        this.form
+        ).then(res =>{
+           
+       this.$oruga.notification.open({
+        message: 'Registro Actualizado!',
+        variant: 'success',
+        duration: 4000,
+        closable:true,
+        position: 'bottom-right'
+      });
+    
+
+
+
+
+
+
+
         }).catch(error =>{
             //atrapar errores del formulario
             console.log(error.response.data)
@@ -109,6 +166,16 @@ methods:{
 
            
         })
+
+
+
+
+
+
+
+
+
+
     },
    getCategory(){
     //obtiene todas las categorias para el select

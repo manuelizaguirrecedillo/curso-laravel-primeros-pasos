@@ -5,10 +5,15 @@ import Alpine from 'alpinejs';
 import {createApp}  from 'vue';
 import app from './componentes/app.vue';
 
+//tailwind
+import '../css/vue.css'
+
+
 //ORUGA
 import Oruga from '@oruga-ui/oruga-next'
 import '@oruga-ui/oruga-next/dist/oruga.css'
 import '@oruga-ui/oruga-next/dist/oruga-full.css'
+import '@oruga-ui/oruga-next/dist/oruga-full-vars.css'
 
 //MATERIAL SEDIGN
 import "@mdi/font/css/materialdesignicons.min.css"

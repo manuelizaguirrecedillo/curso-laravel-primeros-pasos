@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+h1{
+    @apply text-3xl text-center my-5
+}
+
+:root{
+    --oruga-variant-primary:green;
+    --oruga-variant-danger:red;
+}
