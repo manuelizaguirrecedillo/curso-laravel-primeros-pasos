@@ -35,7 +35,7 @@ Route::post('user/login', [UserController::class,'login']);
 Route::get('post/all', [PostController::class, 'all']);
 Route::get('post/slug/{post:slug}', [PostController::class, 'slug']);  //manera directa
 //Route::get('post/slug/{slug}', [PostController::class, 'slug']);    //primera manera
-//Route::get('post/slug/{slug}', [PostController::class, 'slug']);
+Route::post('post/upload/{post}', [PostController::class, 'upload']);
 
 Route::get('category/slug/{slug}', [CategoryController::class, 'slug']);
 Route::get('category/{category}/posts', [CategoryController::class, 'posts']);

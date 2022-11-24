@@ -11,3 +11,7 @@ h1{
     --oruga-variant-primary:green;
     --oruga-variant-danger:red;
 }
+.o-field__message{
+    @apply text-red-400
+
+}

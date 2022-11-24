@@ -33,8 +33,56 @@
             <option value="not">No</option>
         </o-select>   
     </o-field>
+
+    <div class="flex gap-2" v-if="post">
+        <o-field :message="fileError">
+    <o-upload  v-model="filesDaD" multiple drag-drop>
+        <section>
+          <o-icon icon="upload"></o-icon>
+          <span>Drag and drop para cargar</span>
+        </section>
+      </o-upload>
+    </o-field>
+    <span v-for="(file, index) in filesDaD" :key="index">
+        {{ file.name }}
+        <!-- <o-button icon-left="times" size="small" native-type="button" @click="deleteDropFile(index)">
+        </o-button> -->
+      </span>
+
+      <!-- <o-button icon-left="upload" @click="upload"> Subir
+
+      </o-button> -->
+
 </div>
-    <o-button variant="primary" native-type="submit"> Enviar</o-button>
+
+
+
+<div class="flex gap-2" v-if="post">
+    <o-field :message="fileError">
+<o-upload v-model="file" >
+    <o-button tag="a" variant="primary">
+      <o-icon icon="upload"></o-icon>
+      <span>Click to uploads</span>
+    </o-button>
+  </o-upload>
+</o-field>
+
+  <o-button icon-left="upload" @click="upload"> Subir
+
+  </o-button>
+
+</div>
+
+
+
+
+</div>
+<div>
+
+   <o-button variant="primary" native-type="submit" class="gap-2"> Enviar</o-button>
+
+</div>
+ 
 </form>
    
 </template>
@@ -59,7 +107,10 @@ data() {
             posted:"",
 
         },
-        post:""
+        post:"",
+        file:null,
+        filesDaD: [],
+        fileError:"",
     };
 },
 async mounted(){//esat funcion es asincorna porque agregamos el AWAIT
@@ -138,12 +189,6 @@ methods:{
       });
     
 
-
-
-
-
-
-
         }).catch(error =>{
             //atrapar errores del formulario
             console.log(error.response.data)
@@ -177,6 +222,24 @@ methods:{
 
 
     },
+    upload(){
+     
+      const formData =new FormData()
+      formData.append("image",this.file)
+             
+     this.$axios.post("/api/post/upload/"+this.post.id, formData,{
+    headers:{
+     "Content-Type": "multipart/form-data",
+    },
+     })
+     .then((res) => {
+       console.log(res);
+     })
+     .catch ((error) =>{
+        console.log(error.response.data);
+        this.fileError = error.response.data.message;
+     })
+    },
    getCategory(){
     //obtiene todas las categorias para el select
     this.$axios.get("/api/category/all").then(res => {
@@ -209,6 +272,14 @@ methods:{
    }
 
 },
+watch:{
+    filesDaD:{
+        handle(val){
+
+        },
+        deep:true
+    }
+}
 
 }
    
