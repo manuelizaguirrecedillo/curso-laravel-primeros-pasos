@@ -125,7 +125,7 @@ async mounted(){//esat funcion es asincorna porque agregamos el AWAIT
 
     
       //obtiene el slug del post que esta recibiendo
-      console.log(this.$route.params.slug)
+    //  console.log(this.$route.params.slug)
     //obtener las catgeorias para el select
     this.getCategory()
 },
@@ -140,11 +140,14 @@ methods:{
     submit(){
         //limpiar errores
         this.clearErrorsForm()
+        const config ={
+         
+         headers: {Authorization: "Bearer "+ this.$root.token }
+     };
         if(this.post =="")
-           
         //enviar los datos
        return   this.$axios.post("/api/post",
-        this.form
+        this.form,config
         ).then(res =>{
             this.$oruga.notification.open({
         message: 'Registro Creado!',
@@ -175,9 +178,11 @@ methods:{
 
            
         })
+
+        
         //actualizar
           this.$axios.patch("/api/post/"+this.post.id,
-        this.form
+        this.form,config
         ).then(res =>{
            
        this.$oruga.notification.open({
@@ -212,24 +217,16 @@ methods:{
            
         })
 
-
-
-
-
-
-
-
-
-
     },
     upload(){
      
       const formData =new FormData()
       formData.append("image",this.file)
-             
+        
      this.$axios.post("/api/post/upload/"+this.post.id, formData,{
     headers:{
      "Content-Type": "multipart/form-data",
+     "Authorization": 'Bearer'+ this.$root.token 
     },
      })
      .then((res) => {
@@ -241,8 +238,12 @@ methods:{
      })
     },
    getCategory(){
+    const config ={
+         
+            headers: {Authorization: "Bearer "+ this.$root.token }
+        };
     //obtiene todas las categorias para el select
-    this.$axios.get("/api/category/all").then(res => {
+    this.$axios.get("/api/category/all",config).then(res => {
        this.categories =res.data
     })
    },
@@ -251,9 +252,13 @@ methods:{
     // this.$axios.get("/api/post/slug/"+this.$route.params.slug).then(res => {
     //    this.post =res.data
     // });
-
+    //autorizar al api
+    const config ={
+         
+         headers: {Authorization: "Bearer "+ this.$root.token }
+     };
     //le ponemos el await para que espere a completarlo y proseguir con el proceso
-     this.post = await this.$axios.get("/api/post/slug/"+this.$route.params.slug);
+     this.post = await this.$axios.get("/api/post/slug/"+this.$route.params.slug,config);
      this.post =this.post.data
 
 

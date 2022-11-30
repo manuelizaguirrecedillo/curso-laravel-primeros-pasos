@@ -20,6 +20,8 @@ import "@mdi/font/css/materialdesignicons.min.css"
 
 //AXIOS
 import axios from 'axios'
+//cookie
+import  VueCookies  from 'vue3-cookies';
 
 import router from "./componentes/router"
 
@@ -27,7 +29,7 @@ import router from "./componentes/router"
 window.Alpine = Alpine;
 Alpine.start();
 
-const App = createApp(app).use(Oruga).use(router)
+const App = createApp(app).use(Oruga).use(router).use(VueCookies)
 //implementar axios
 App.config.globalProperties.$axios =axios
 window.axios = axios

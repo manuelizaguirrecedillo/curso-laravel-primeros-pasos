@@ -40,7 +40,7 @@
                 
                 <router-link class="mr-3" :to="{name:'save', params:{'slug': p.row.slug }}">Editar</router-link>
 
-                <o-button  iconLeft="delete" rounded  variant="danger" @click="deletePostRow=p.row; confirmDeleteActive=true" >Eliminar</o-button>
+                <o-button  iconLeft="delete" rounded  variant="danger" @click="deletePostRow=p; confirmDeleteActive=true" >Eliminar</o-button>
 
 
 
@@ -93,10 +93,14 @@ methods:{
     },
 
     listPage(){
-       
+       //config para ingresar al ruta protegida de la api
+        const config ={
+         //   headers: {Authorization: `Bearer ${ this.$root.$cookies.get('auth').token }`},
+           headers: {Authorization: "Bearer "+ this.$root.token }
+        };
        
         this.isLoading =true;
-        this.$axios.get("/api/post?page="+this.currentPage).then((res)=>{
+        this.$axios.get("/api/post?page="+this.currentPage, config).then((res)=>{
         this.posts =res.data;
         this.isLoading =false;
         
@@ -106,11 +110,17 @@ methods:{
 
     },
     deletePost(){
+         //config para ingresar al ruta protegida de la api
+         const config ={
+         //   headers: {Authorization: `Bearer ${ this.$root.$cookies.get('auth').token }`},
+           headers: {Authorization: "Bearer "+ this.$root.token }
+        };
     
      this.posts.data.splice(this.deletePostRow.index,1) ;  //el splice botrra los elementos y el siguiente parametro es para saber cuantos eliminar
      
-     console.log(this.deletePostRow.id)
-     this.$axios.delete("/api/post/" + this.deletePostRow.id);
+     console.log(this.deletePostRow.row.id)
+     console.log(this.deletePostRow.index)
+     this.$axios.delete("/api/post/" + this.deletePostRow.row.id , config);
 
      this.confirmDeleteActive=false;
      
@@ -127,7 +137,7 @@ methods:{
 },
 
     async mounted(){
-
+        console.log(this.$cookies.get('auth'))
         this.listPage();
       
       

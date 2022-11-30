@@ -8,12 +8,49 @@
     <title></title>
 </head>
 <body>
-    
+
+@if (auth()->check())
+<script>
+    // {{ session('token') }}
+    // {{ Auth::user() }}
+   
+   window.Laravel = {!! 
+                         json_encode([
+                            'isLoggedin' => true,
+                            'user' => auth()->user(),
+                            'token' => session('token')
+                         ])
+     
+                    !!}
+
+</script>    
+@else
+<script>
+ 
+   window.Laravel = {!! 
+                         json_encode([
+                            'isLoggedin' => false,
+                            
+                         ])
+     
+                    !!}
+
+</script>
+@endif
+
+
+
+
+
     @vite("resources/js/app.js")
     <div class="container" class="bg-blue-500">
         <div id="app" >
             </div> 
     </div>
+
+
+
+
 </body>
 </html>
 
