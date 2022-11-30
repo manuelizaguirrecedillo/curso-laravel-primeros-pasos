@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <div class="container mx-auto">
+        <div class="mt-6 px-6 py-4 bg-white shadow-md rounded-md">
+
+       
 
      <o-modal v-model:active="confirmDeleteActive">
         <div class="p-4">
@@ -68,7 +71,7 @@
         >
        </o-pagination>
 
-
+    </div>
     </div>
 </template>
 

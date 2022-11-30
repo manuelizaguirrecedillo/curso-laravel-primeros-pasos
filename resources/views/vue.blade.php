@@ -43,10 +43,10 @@
 
 
     @vite("resources/js/app.js")
-    <div class="container" class="bg-blue-500">
+    
         <div id="app" >
             </div> 
-    </div>
+    
 
 
 

@@ -1,11 +1,13 @@
 <template>
-<form @submit.prevent="submit" >
-    
-<div class="grid grid-cols-2 gap-3">
 
+    
+
+<div class="container mx-auto">
+  <div class="mt-6 mb-2 px-6 py-4 bg-white shadow-md rounded-md">
 <h1 v-if="post"   >Actualizar Post <span class="font-bold">{{post.title}}</span></h1>
 <h1 v-else >Crear Post <span class="font-bold"></span></h1>
-     
+<form @submit.prevent="submit" >
+     <div class="grid grid-cols-2 gap-3">
     <div class="col-span-2">
   <o-field label="Titulo" :variant="errors.title ? 'danger' : 'primary'" :message="errors.title">
         <o-input v-model="form.title"  value=""></o-input>
@@ -84,7 +86,8 @@
 </div>
  
 </form>
-   
+</div>
+</div>
 </template>
 <script>
 export default{

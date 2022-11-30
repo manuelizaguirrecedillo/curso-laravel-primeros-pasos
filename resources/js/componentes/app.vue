@@ -1,14 +1,58 @@
 <template>
     <div>
       <!-- <Save/>   -->
-      <header>
-        <div class="flex gap-3 bg-gray-200">
-          <router-link  v-if="!$root.isLoggedin" :to="{name:'login'}"  > Login</router-link>
+      <nav class="bg-white border-b border-gray-100">
 
-          <o-button v-if="$root.isLoggedin" variant="danger" @click="logout"> Logout</o-button>
-          <p v-if="$root.isLoggedin">{{ $root.user.name}}</p>
+      
+      <header class=" max-w-7x1 px-4 sm:px-6 lg:px-8">
+        <div class="flex">
+          <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="35" viewBox="0 0 262 227">
+              <g id="Vue.js_logo_strokes" fill="none" fill-rule="evenodd">
+                <g id="Path-2">
+                  <polyline class="outer" stroke="#4B8" stroke-width="46" points="12.19 -24.031 131 181 250.351 -26.016" />
+                </g>
+                <g id="Path-3" transform="translate(52)">
+                  <polyline class="inner" stroke="#354" stroke-width="42" points="15.797 -14.056 79 94 142.83 -17.863" />
+                </g>
+              </g>
+        </svg>
+          </div>
+
+
+
+          <div class=" w-full flex py-4 px-4 sm:px-6 justify-between">
+         
+             <div class="flex h-8 items-center">  
+               <router-link  class="mx-3 inline-flex py-1 uppercase border-b-2 text-sm leading-5 px-4 text-gray-600 text-center font-bold hover:border-gray-700 duration-150 transition-all hover:-translate-y-1" v-if="!$root.isLoggedin" :to="{name:'login'}"  > Login</router-link>
+              <router-link  class="mx-3 inline-flex py-1 uppercase border-b-2 text-sm leading-5 px-4 text-gray-600 text-center font-bold hover:border-gray-700 duration-150 transition-all hover:-translate-y-1" v-if="$root.isLoggedin" :to="{name:'list'}"  > POST</router-link>
+  
+              <o-button v-if="$root.isLoggedin" variant="danger" @click="logout"> Logout</o-button>
+              </div>
+            <div class="flex flex-col items-center" v-if="$root.isLoggedin">
+            <div class="rounded-full w-9 h-9 bg-blue-300 p-1 font-bold text-center">
+              {{ $root.user.name.substr(0,2).toUpperCase()}}
+
+            </div>
+            <p >{{ $root.user.name}}</p>
+           </div>
+
+          </div>
+
+
+
         </div>
       </header>
+  </nav>
+
+
+  <div class="flex gap-3 bg-gray-200">
+    
+   
+   
+  </div>
+
+
 
       <router-view> 
 
